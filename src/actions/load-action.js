@@ -21,7 +21,7 @@ export default function loadActionAsync (offset, limit, reload=false) {
                 grape : state.filters.grape,
                 year: state.filters.year,
                 average_score_min: state.filters.average_rating,
-                alcohol_content_min: state.filters.alcohol_content,
+                alcohol_content_max: state.filters.alcohol_content,
                 nr_reviews_min: state.filters.nr_reviews,
                 // ordering: year, // -year
             }

@@ -64,7 +64,8 @@ export default function WineList () {
                         vinipediaData.results.map(vintage => {
                             return (
                                 <StyledWine>
-                                    <img src="planalto_branco.jpg" alt={`${vintage.wine.name} ${vintage.year}`}></img>
+                                    {/* <img src="planalto_branco.jpg" alt={`${vintage.wine.name} ${vintage.year}`}></img> */}
+                                    <img src={vintage.wine.image ? vintage.wine.image : `${vintage.wine.type}.png`} alt={`${vintage.wine.name} ${vintage.year}`}></img>
                                     <div className="details">
                                         <div className="producer">{vintage.wine.producer.short_name ? vintage.wine.producer.short_name : vintage.wine.producer.name}</div>
                                         <div className="wine">{vintage.wine.name} {vintage.year ? vintage.year : 'N.V.' }</div>
@@ -136,8 +137,11 @@ const StyledWine = styled.div`
     border-radius: 0.5rem;
     box-shadow: 0px 2px 15px 2px #ccc;
     img {
-        height: 100%;
-        flex-basis: 20%; 
+        /* height: 100%;
+        flex-basis: 20%;  */
+        height: 200px;
+        width: 180px;
+        object-fit: scale-down;
     }
     .details {
         height: 100%;

@@ -8,14 +8,6 @@ export const defaultFilterState = {
     year: null,
     nr_reviews: null, 
     average_rating: null, 
-    // wine: 2,
-    // producer : x,
-    // region : x,
-    // grape : x,
-    // alcohol (min, max): 2,
-    // year: 2017,
-    // nr_reviews (min): 2,
-    // average_rating (min, max): 2,
     // ordering: year, // -year
 }
 
