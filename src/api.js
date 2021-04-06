@@ -1,10 +1,10 @@
 
-export const vinipediaUrl = () => 'http://localhost:8080/wines/api/';
+export const vinipediaUrlForVintages = () => 'http://vinipedia.herokuapp.com/wines/api/vintages/';
 
-export const vinipediaUrlForWines = () => 'http://localhost:8080/wines/api/wines/';
+export const vinipediaAuthTokenUrl = () => 'http://vinipedia.herokuapp.com/api-token-auth/';
 
-export const vinipediaUrlForVintages = () => 'http://localhost:8080/wines/api/vintages/';
+// export const vinipediaUrlForGrapes = () => 'http://localhost:8000/wines/api/grapes/';
 
-export const vinipediaUrlForGrapes = () => 'http://localhost:8080/wines/api/grapes/';
+// export const vinipediaUrl = () => 'http://localhost:8000/wines/api/';
 
-export const vinipediaAuthTokenUrl = () => 'http://localhost:8080/api-token-auth/';
+// export const vinipediaUrlForWines = () => 'http://localhost:8000/wines/api/wines/';
