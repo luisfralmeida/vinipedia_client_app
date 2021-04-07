@@ -1,5 +1,5 @@
 
-export const vinipediaUrlForVintages = () => 'http://vinipedia.herokuapp.com/wines/api/vintages/';
+export const vinipediaUrlForVintages = () => 'https://vinipedia.herokuapp.com/wines/api/vintages/';
 
 export const vinipediaAuthTokenUrl = () => 'http://vinipedia.herokuapp.com/api-token-auth/';
 

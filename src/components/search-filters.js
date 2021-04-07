@@ -59,7 +59,7 @@ const SearchFilters = ({
     }
 
     const wine_types = ['white', 'red', 'rosé', 'sparkling', 'port', 'madeira', 'moscatel'];
-    const producers = ['Adega de Borba', 'Bacalhôa Vinhos de Portugal'];
+    const producers = ['Bacalhôa Vinhos de Portugal', "Blandy's", 'Casa Ermelinda Freitas', 'Casa Mateus Rosé', 'Esporão', 'Monte da Ravasqueira', 'Quinta das Marias', 'Vidigal Wines', 'Symington Family Estates'];
     const regions = ['The Azores', 'Alentejo', 'Algarve', 'Bairrada', 'Beira Interior', 'Dão', 'Lisboa', 'Madeira', 'Setúbal Peninsula', 'Porto and Douro', 'Tejo', 'Trás-os-Montes', 'Távora-Varosa', 'Vinho Verde'];
     // const regions = ['Açores', 'Alentejo', 'Algarve', 'Bairrada', 'Beira Interior', 'Dão', 'Lisboa', 'Madeira', 'Península de Setúbal', 'Porto and Douro', 'Tejo', 'Trás-os-Montes', 'Távora-Varosa', 'Vinho Verde'];
     const grapes = ['Alvarinho', 'Antão Vaz', 'Aragonez', 'Arinto', 'Avesso', 'Baga', 'Bical', 'Castelão', 'Códega do Larinho', 'Fernão Pires', 'Fonte Cal', 'Gouveio', 'Loureiro', 'Malvasia Fina', 'Moscatel Graúdo', 'Rufete', 'Síria', 'Syrah', 'Tinta Barroca', 'Touriga Franca', 'Touriga Nacional', 'Trincadeira', 'Vinhão', 'Viosinho', 'Vital'];
