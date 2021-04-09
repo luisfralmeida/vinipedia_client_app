@@ -18,25 +18,14 @@ const SearchFilters = ({
     useEffect(() => {
         // If the searchFilters have been modified, reset hasMore to true before 
         // loading and evaluating the data.
-        console.log("setHasMore is being set to true");
         setHasMore(true);
         if (searchFilters != defaultFilterState) {
             // If the searchFilters have been modified, reset the state variable 
             // storing the results received so far.
             let reload = true;
-            dispatch(loadActionAsync(0, 5, reload));
+            dispatch(loadActionAsync(0, 10, reload));
         }
     }, [searchFilters, dispatch])
-    
-    // const onToggleFiltersHandler = (event, type) => {
-    //     if (searchFilters.type.includes(event.target.value)) {
-    //         console.log("remove filter");
-    //         dispatch(removeFilterAction(type, event.target.value));
-    //     } else {
-    //         console.log("add filter");
-    //         dispatch(addFilterAction(type, event.target.value));
-    //     }
-    // };
 
     const isValidQuery = (query) => {
         // arbitrary values for year input validation
@@ -58,12 +47,11 @@ const SearchFilters = ({
         return (val >= 0 && val <= 100)
     }
 
+    // Hardcoded values (all of these could be also accessed through an API call, but we opted to simplify the logic here - showing some of the most relevant only)
     const wine_types = ['white', 'red', 'rosé', 'sparkling', 'port', 'madeira', 'moscatel'];
     const producers = ['Bacalhôa Vinhos de Portugal', "Blandy's", 'Casa Ermelinda Freitas', 'Casa Mateus Rosé', 'Esporão', 'Monte da Ravasqueira', 'Quinta das Marias', 'Vidigal Wines', 'Symington Family Estates'];
     const regions = ['The Azores', 'Alentejo', 'Algarve', 'Bairrada', 'Beira Interior', 'Dão', 'Lisboa', 'Madeira', 'Setúbal Peninsula', 'Porto and Douro', 'Tejo', 'Trás-os-Montes', 'Távora-Varosa', 'Vinho Verde'];
-    // const regions = ['Açores', 'Alentejo', 'Algarve', 'Bairrada', 'Beira Interior', 'Dão', 'Lisboa', 'Madeira', 'Península de Setúbal', 'Porto and Douro', 'Tejo', 'Trás-os-Montes', 'Távora-Varosa', 'Vinho Verde'];
-    const grapes = ['Alvarinho', 'Antão Vaz', 'Aragonez', 'Arinto', 'Avesso', 'Baga', 'Bical', 'Castelão', 'Códega do Larinho', 'Fernão Pires', 'Fonte Cal', 'Gouveio', 'Loureiro', 'Malvasia Fina', 'Moscatel Graúdo', 'Rufete', 'Síria', 'Syrah', 'Tinta Barroca', 'Touriga Franca', 'Touriga Nacional', 'Trincadeira', 'Vinhão', 'Viosinho', 'Vital'];
-    // const grapes = ['Baga', 'Aragonês', 'Touriga Nacional', 'Touriga Franca', 'Moscatel de Setúbal', 'Moscatel Galego Roxo'];
+    const grapes = ['Alvarinho', 'Antão Vaz', 'Aragonez', 'Arinto', 'Avesso', 'Baga', 'Bical', 'Malvasia Fina', 'Moscatel Graúdo', 'Rufete', 'Síria', 'Syrah', 'Tinta Barroca', 'Touriga Franca', 'Touriga Nacional', 'Trincadeira', 'Vinhão', 'Viosinho', 'Vital'];
 
 
     return (
@@ -75,7 +63,6 @@ const SearchFilters = ({
                             <StyledFilterCategory>                    
                                 { 
                                     wine_types.map((type) => {
-                                        // return <button value={`${type}`} className={`${searchFilters.type.includes(type) ? 'active' : ''}`} onClick={(e) => onToggleFiltersHandler(e, 'type')}>{type}</button>
                                         return <button value={`${type}`} 
                                                        className={`${searchFilters.type.includes(type) ? 'active' : ''}`} 
                                                        onClick={(e) => searchFilters.type.includes(type) ? 
@@ -90,7 +77,6 @@ const SearchFilters = ({
                             <StyledFilterCategory>                 
                                 { 
                                     producers.map((producer) => {
-                                        // return <button value={`${producer}`} className={`${searchFilters.producer.includes(producer) ? 'active' : ''}`} onClick={(e) => onToggleFiltersHandler(e, 'producer')}>{producer}</button>
                                         return <button value={`${producer}`} 
                                                        className={`${searchFilters.producer.includes(producer) ? 'active' : ''}`} 
                                                        onClick={(e) => searchFilters.producer.includes(producer) ? 
@@ -141,11 +127,11 @@ const SearchFilters = ({
                                    onChange={(e) => isValidYear(e.target.value) ? dispatch(addFilterAction('year', e.target.value)) : !e.target.value ? dispatch(removeFilterAction('year', e.target.value)) : null}>
                             </input>
                             </StyledFilterCategory>
-                            <h5>Maximum alcohol content</h5>
+                            <h5>Minimum average rating</h5>
                             <StyledFilterCategory>
-                            <input type="number" name="" id="" min="0" max="100" step="1"
-                                   onChange={(e) => isValidAlcoholContent(e.target.value) ? dispatch(addFilterAction('alcohol_content', e.target.value)) : !e.target.value ? dispatch(removeFilterAction('alcohol_content', e.target.value)) : null}>
-                            </input>
+                                <input type="number" name="" id="" min="1" max="5" step="0.5"
+                                    onChange={(e) => isValidRating(e.target.value) ? dispatch(addFilterAction('average_rating', e.target.value)) : !e.target.value ? dispatch(removeFilterAction('average_rating', e.target.value)) : null}>
+                                </input>
                             </StyledFilterCategory>
                             <h5>Minimum number of reviews</h5>
                             <StyledFilterCategory>
@@ -153,13 +139,13 @@ const SearchFilters = ({
                                    onChange={(e) => e.target.value > 0 ? dispatch(addFilterAction('nr_reviews', e.target.value)) : !e.target.value ? dispatch(removeFilterAction('nr_reviews', e.target.value)) : null}>
                             </input>
                             </StyledFilterCategory>
-                            <h5>Minimum average rating</h5>
+                            <h5>Maximum alcohol content</h5>
                             <StyledFilterCategory>
-                                <input type="number" name="" id="" min="1" max="5" step="0.1"
-                                    onChange={(e) => isValidRating(e.target.value) ? dispatch(addFilterAction('average_rating', e.target.value)) : !e.target.value ? dispatch(removeFilterAction('average_rating', e.target.value)) : null}>
-                                </input>
+                            <input type="number" name="" id="" min="0" max="100" step="1"
+                                   onChange={(e) => isValidAlcoholContent(e.target.value) ? dispatch(addFilterAction('alcohol_content', e.target.value)) : !e.target.value ? dispatch(removeFilterAction('alcohol_content', e.target.value)) : null}>
+                            </input>
                             </StyledFilterCategory>
-                            <button onClick={(e) => dispatch(resetFilterAction())} style={{color:"white", "border":"0px", "border-radius": "0px", "background-color":"#040440"}}>Reset filters</button>
+                            <button onClick={(e) => dispatch(resetFilterAction())} style={{color:"white", "margin-left": "auto", "border":"0px", "border-radius": "0px", "background-color":"#040440"}}>Reset filters</button>
                         </StyledFiltersSection>
                 </StyledDetails>
             </StyledSideContext>
@@ -216,7 +202,7 @@ const StyledFiltersSection = styled.div`
     justify-content: flex-start;
     align-items: flex-start;
     width: 100%;
-    height:90vh;
+    height: 87vh;
     overflow-y: scroll;
     background-color: #fafafa;
     h5:first-child {
@@ -250,8 +236,6 @@ const StyledFiltersSection = styled.div`
         margin-right: auto;
         text-align-last: center;
         border-radius: 0;
-        /* border: #b1b1b1 1px solid;
-        color: #b1b1b1; */
         background-color: transparent;
         border: #b2b2b2 1px solid;
         color: #b2b2b2;

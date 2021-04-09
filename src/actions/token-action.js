@@ -4,8 +4,10 @@ import { vinipediaAuthTokenUrl } from "../api";
 export default function tokenActionAsync () {
 
     const bodyParameters = {
-        username: "admin",
-        password: "admin"
+        // replace with the appropriate credentials for any vinipedia registered user
+        // (for testing only - these were meant to be input by the user through a login form)
+        username: "<username>", 
+        password: "<password>"
     };
 
     return async (dispatch) => {

@@ -1,10 +1,5 @@
 
 export const vinipediaUrlForVintages = () => 'https://vinipedia.herokuapp.com/wines/api/vintages/';
 
-export const vinipediaAuthTokenUrl = () => 'http://vinipedia.herokuapp.com/api-token-auth/';
-
-// export const vinipediaUrlForGrapes = () => 'http://localhost:8000/wines/api/grapes/';
-
-// export const vinipediaUrl = () => 'http://localhost:8000/wines/api/';
-
-// export const vinipediaUrlForWines = () => 'http://localhost:8000/wines/api/wines/';
+// We thought of implementing auth-token authentication, but ended up not doing it
+export const vinipediaAuthTokenUrl = () => 'https://vinipedia.herokuapp.com/api-token-auth/';

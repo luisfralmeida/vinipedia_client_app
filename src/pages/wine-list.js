@@ -21,30 +21,18 @@ export default function WineList () {
 
     const fetchMoreItems = () => {
         if (vinipediaData.count != null && vinipediaData.results.length >= vinipediaData.count) {
-            console.log("vinipediaData.count:", vinipediaData.count);
-            console.log("vinipediaData.results.length:", vinipediaData.results.length);
-            console.log("setHasMore is being set to false");
             // setHasMore(false);
         } else {
-            console.log("vinipediaData.count:", vinipediaData.count);
-            console.log("vinipediaData.results.length:", vinipediaData.results.length);
-            console.log(`setHasMore remains ${hasMore}`);
             // Since we are simply fetching more items, we don't want to reset the state variable 
             // storing all the results received so far.
             let reload = false;
-            dispatch(loadActionAsync(vinipediaData ? vinipediaData.results.length : 0, 5, reload));
+            dispatch(loadActionAsync(vinipediaData ? vinipediaData.results.length : 0, 10, reload));
         }
     };
 
     const onGetTokenHandler = () => {
         dispatch(tokenActionAsync());
     }
-
-    // const onLoadItemsHandler = () => {
-    //     dispatch(loadActionAsync(vinipediaData ? vinipediaData.results.length : 0, 5));
-    // }
-
-    console.log(vinipediaData);
 
     return (
         <StyledHome>
@@ -54,7 +42,7 @@ export default function WineList () {
                 loadMore={fetchMoreItems} 
                 pageStart={0}
                 hasMore={hasMore}
-                loader={<div className="loader" key={0}>Loading ...</div>}
+                loader={<div className="loader" key={0}></div>}
                 initialLoad={true}
                 useWindow={true}
                 style={{display: "flex", 'flex-wrap':"wrap", 'flex-basis':"60%", 'max-width':"60%", 'align-content':'flex-start', 'padding-top':'2.5rem'}}>
@@ -64,7 +52,6 @@ export default function WineList () {
                         vinipediaData.results.map(vintage => {
                             return (
                                 <StyledWine>
-                                    {/* <img src="planalto_branco.jpg" alt={`${vintage.wine.name} ${vintage.year}`}></img> */}
                                     <img src={vintage.wine.image ? vintage.wine.image : `${vintage.wine.type}.png`} alt={`${vintage.wine.name} ${vintage.year}`}></img>
                                     <div className="details">
                                         <div className="producer">{vintage.wine.producer.short_name ? vintage.wine.producer.short_name : vintage.wine.producer.name}</div>
@@ -93,25 +80,20 @@ export default function WineList () {
                                             :
                                             <div className="reviews">Be the first to review this vintage</div>
                                         }
-                                        {/* <div className="region">{vintage.wine.origin} {vintage.wine.origin.country}</div> */}
                                     </div>
                                 </StyledWine>
                             )
                         })
                         :
-                        <p>No matching results</p>
+                        <p>No matching results with these filters.</p>
                     }
             </InfiniteScroll>
-            <div>
+            {/* <div>
                 <div style={{position: "absolute", top: 0, right: 0}}>
-                    {/* <input type="text" id="username"></input>
-                    <input type="text" id="password"></input> */}
-                    {/* <button type="button" onClick={onGetTokenHandler}>Get token</button> */}
-                    {/* <p>Request status: <span>{authTokenData.status}</span></p> */}
-                    {/* <p>Token: <span>{authTokenData.token}</span></p> */}
-                    {/* <button type="button" onClick={onLoadItemsHandler}>Load items</button> */}
+                    <button type="button" onClick={onGetTokenHandler}>Get token</button>
+                    <p>Token: <span>{authTokenData.token}</span></p>
                 </div>
-            </div>
+            </div> */}
         </StyledHome>
     )
 }

@@ -28,6 +28,6 @@ h2 {
     font-size: 20pt;
     font-weight: 900;
     /* font-family: 'MuseoModerno', cursive; */
-    font-family: system-ui;
+    font-family: 'Segoe UI', system-ui;
 }
 `

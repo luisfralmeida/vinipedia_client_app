@@ -8,7 +8,6 @@ export const defaultFilterState = {
     year: null,
     nr_reviews: null, 
     average_rating: null, 
-    // ordering: year, // -year
 }
 
 export default function filtersReducer (state=defaultFilterState, action) {
